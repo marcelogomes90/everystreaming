@@ -1,14 +1,15 @@
 import { createGlobalStyle } from 'styled-components';
-import { BackgroundColor } from './colors'
+import { BackgroundDarkColor, FontColor1 } from './colors'
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-
+  
   body {
     margin: 0;
     padding: 0;
-    background: ${BackgroundColor};
+    box-sizing: border-box;
+    background: ${BackgroundDarkColor};
     font-family: 'Ubuntu', sans-serif;
+    color: ${FontColor1};
   }
   
 `
