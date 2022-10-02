@@ -8,7 +8,7 @@ import Button from "./button";
 
 function Navbar() {
 
-    const [menu, setMenu] = useState("translateX(100%)");
+    const [menu, setMenu] = useState("translateX(0)");
     const [menuIsOpen, setMenuIsOpen] = useState(false);
 
     const openMenu = () => {
