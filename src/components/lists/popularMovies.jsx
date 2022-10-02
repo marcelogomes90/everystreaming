@@ -1,8 +1,9 @@
+import { useState, useEffect } from "react";
 import Container from "./container";
 import Image from "./image";
 import ImageLink from "./link";
 import Title from "./title";
-
+import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper";
 
@@ -10,7 +11,18 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 
+const baseURL = "https://api.themoviedb.org/3/trending/movie/week?api_key=253799727221b7a1aa90c66eb08832a0";
+const imageURL = "https://image.tmdb.org/t/p/w500"
+
 function PopularMovies() {
+
+    const [post, setPost] = useState();
+    
+    useEffect(() => {
+        axios.get(baseURL).then((response) => {
+          setPost(response.data.results);
+        });
+    }, [] );
 
     return(
         <>
@@ -23,7 +35,6 @@ function PopularMovies() {
                     freeMode={true}
                     grabCursor={true}
                     spaceBetween={-20}
-                    loop={true}
                     breakpoints={{
                         275: {
                           slidesPerView: 2,
@@ -52,61 +63,13 @@ function PopularMovies() {
                     modules={[FreeMode, Navigation]}
                     className="mySwiper"
                 >
-                    <SwiperSlide>
-                        <ImageLink>
-                            <Image src="https://i.pinimg.com/736x/38/0a/e1/380ae144e01841bb335bd506e10f4e63.jpg"></Image>
-                        </ImageLink>
+                    { post?.map((movie) =>
+                        <SwiperSlide key={movie.id}>
+                            <ImageLink>
+                                <Image src={`${imageURL}${movie.poster_path}`}></Image>
+                            </ImageLink>
                     </SwiperSlide>
-                    <SwiperSlide>
-                        <ImageLink>
-                            <Image src="https://i.pinimg.com/736x/38/0a/e1/380ae144e01841bb335bd506e10f4e63.jpg"></Image>
-                        </ImageLink>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ImageLink>
-                            <Image src="https://i.pinimg.com/736x/38/0a/e1/380ae144e01841bb335bd506e10f4e63.jpg"></Image>
-                        </ImageLink>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ImageLink>
-                            <Image src="https://i.pinimg.com/736x/38/0a/e1/380ae144e01841bb335bd506e10f4e63.jpg"></Image>
-                        </ImageLink>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ImageLink>
-                            <Image src="https://i.pinimg.com/736x/38/0a/e1/380ae144e01841bb335bd506e10f4e63.jpg"></Image>
-                        </ImageLink>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ImageLink>
-                            <Image src="https://i.pinimg.com/736x/38/0a/e1/380ae144e01841bb335bd506e10f4e63.jpg"></Image>
-                        </ImageLink>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ImageLink>
-                            <Image src="https://i.pinimg.com/736x/38/0a/e1/380ae144e01841bb335bd506e10f4e63.jpg"></Image>
-                        </ImageLink>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ImageLink>
-                            <Image src="https://i.pinimg.com/736x/38/0a/e1/380ae144e01841bb335bd506e10f4e63.jpg"></Image>
-                        </ImageLink>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ImageLink>
-                            <Image src="https://i.pinimg.com/736x/38/0a/e1/380ae144e01841bb335bd506e10f4e63.jpg"></Image>
-                        </ImageLink>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ImageLink>
-                            <Image src="https://i.pinimg.com/736x/38/0a/e1/380ae144e01841bb335bd506e10f4e63.jpg"></Image>
-                        </ImageLink>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <ImageLink>
-                            <Image src="https://i.pinimg.com/736x/38/0a/e1/380ae144e01841bb335bd506e10f4e63.jpg"></Image>
-                        </ImageLink>
-                    </SwiperSlide>
+                    )}
                 </Swiper>
             </Container>           
         </>   
