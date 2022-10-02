@@ -14,6 +14,9 @@ const NavTitle = styled.a`
     @media (max-width: 767px) {
         font-size: 1.5rem;
     }
+    @media (max-width: 350px) {
+        font-size: 1.25rem;
+    }
 `
 
 export default NavTitle;

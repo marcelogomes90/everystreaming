@@ -5,6 +5,10 @@ const Title = styled.h2`
     color: ${FontColor1};
     padding-left: 3rem;
     margin-top: 3rem;
+
+    @media (max-width: 767px) {
+        padding-left: 1rem;
+    }
 `
 
 export default Title;

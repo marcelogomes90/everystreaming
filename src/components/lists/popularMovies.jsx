@@ -22,16 +22,16 @@ function PopularMovies() {
                     }}
                     freeMode={true}
                     grabCursor={true}
-                    centeredSlides={true}
+                    spaceBetween={-20}
                     loop={true}
                     breakpoints={{
-                        300: {
+                        275: {
                           slidesPerView: 2,
                         },
-                        500: {
+                        550: {
                           slidesPerView: 3,
                         },
-                        900: {
+                        930: {
                           slidesPerView: 4,
                         },
                         1150: {
