@@ -13,11 +13,14 @@ const LinksContainer = styled.div`
         right: 0;
         flex-direction: column;
         width: 60vw;
-        height: 92vh;
+        height: 90vh;
         background-color: ${BackgroundColor};
         justify-content: flex-start;
         align-items: center;
-        display: ${props => props.showDisplay || "none"};
+        transform: ${props => props.showMenu};
+        padding-top: 2vh;
+        transition: transform 0.3s ease-in;
+        z-index: 2;
     }
 `
 

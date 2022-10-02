@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
     background: ${BackgroundDarkColor};
     font-family: 'Ubuntu', sans-serif;
     color: ${FontColor1};
+    overflow-x: hidden;
   }
   
 `

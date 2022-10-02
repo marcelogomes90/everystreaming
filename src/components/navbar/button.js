@@ -11,7 +11,7 @@ const Button = styled.div`
     }
 
     @media (max-width: 767px) {
-        display: contents;
+        display: flex;
     }
 `
 
