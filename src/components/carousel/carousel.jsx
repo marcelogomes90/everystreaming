@@ -40,13 +40,13 @@ function Carousel() {
                     { post?.slice(0, 7).map((trend) => 
                         <SwiperSlide>
                             <DivCarousel>
+                                <Poster src={`${poster}${trend.backdrop_path}`}></Poster>
                                 <Information>
-                                    <h1>{`${trend.title || trend.name}`}</h1>
+                                    <h2>{`${trend.title || trend.name}`}</h2>
                                     <p>Sinopse: {`${trend.overview}`}</p>
                                     <h4>Release Date: {`${trend.release_date || trend.first_air_date}`}</h4>
                                     <p>Nota: {`${trend.vote_average}`}</p>
                                 </Information>
-                                <Poster src={`${poster}${trend.backdrop_path}`}></Poster>
                             </DivCarousel>
                         </SwiperSlide>
                     )}

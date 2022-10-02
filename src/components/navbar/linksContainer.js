@@ -17,9 +17,8 @@ const LinksContainer = styled.div`
         background-color: ${BackgroundColor};
         justify-content: flex-start;
         align-items: center;
-        transform: ${props => props.showMenu};
+        display: ${props => props.showMenu};
         padding-top: 2vh;
-        transition: transform 0.3s ease-in;
         z-index: 2;
     }
 `

@@ -8,11 +8,11 @@ import Button from "./button";
 
 function Navbar() {
 
-    const [menu, setMenu] = useState("translateX(0)");
+    const [menu, setMenu] = useState("none");
     const [menuIsOpen, setMenuIsOpen] = useState(false);
 
     const openMenu = () => {
-        menu == "translateX(0)" ? setMenu("translateX(100%)") : setMenu("translateX(0)");
+        menu == "none" ? setMenu("") : setMenu("none");
         menuIsOpen == false ? setMenuIsOpen(true) : setMenuIsOpen(false);
     }
 
@@ -23,6 +23,7 @@ function Navbar() {
             <LinksContainer showMenu={`${menu}`}>
                 <Link href="#">Movies</Link>
                 <Link href="#">Series</Link>
+                <Link href="#">About</Link>
             </LinksContainer>
         </Nav>    
     )
