@@ -12,6 +12,10 @@ const GlobalStyle = createGlobalStyle`
     color: ${FontColor1};
     overflow-x: hidden;
   }
+
+  .swiper-pagination-bullet {
+     background-color: rgba(131,111,169, 0.7);
+  }
   
 `
 

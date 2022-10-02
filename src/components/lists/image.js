@@ -7,12 +7,12 @@ const Image = styled.img`
 
     @media (max-width: 767px) {
         height: 14rem;
-        width: 10rem;
+        width: 9.5rem;
     }
 
     @media (max-width: 370px) {
         height: 10rem;
-        width: 8rem;
+        width: 7.5rem;
     }
 `
 
