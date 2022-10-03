@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Navigation } from "swiper";
+import { Navigation } from "swiper";
 import Container from "./container";
 import Image from "./image";
 import ImageLink from "./link";
 import Title from "./title";
 import axios from "axios";
 import "swiper/css";
-import "swiper/css/free-mode";
 import "swiper/css/navigation";
 
 const baseURL = "https://api.themoviedb.org/3/trending/movie/day?api_key=253799727221b7a1aa90c66eb08832a0";
@@ -31,8 +30,8 @@ function PopularMovies() {
                     pagination={{
                         clickable: true,
                     }}
-                    freeMode={true}
-                    grabCursor={true}
+                    navigation={true}
+                    loop={true}
                     spaceBetween={-20}
                     breakpoints={{
                         275: {
@@ -57,9 +56,7 @@ function PopularMovies() {
                           slidesPerView: 8,
                         },
                     }}
-                    mousewheel={true}
-                    keyboard={true}
-                    modules={[FreeMode, Navigation]}
+                    modules={[Navigation]}
                     className="mySwiper"
                 >
                     { post?.map((movie) =>

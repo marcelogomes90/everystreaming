@@ -19,7 +19,7 @@ const Information = styled.div`
     }
     @media (max-width: 800px) {
         height: 20rem;
-        width: 95vw;
+        width: 80vw;
     }
     @media (max-width: 500px) {
         height: 18rem;

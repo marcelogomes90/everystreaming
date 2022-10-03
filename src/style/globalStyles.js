@@ -15,6 +15,10 @@ const GlobalStyle = createGlobalStyle`
   .swiper-pagination-bullet {
      background-color: rgba(131,111,169, 0.7);
   }
+
+  .swiper-button-next, .swiper-button-prev {
+    color: rgba(255,255,255, 0.7);
+  }
   
 `
 
