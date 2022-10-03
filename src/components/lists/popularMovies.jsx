@@ -6,9 +6,9 @@ import Image from "./image";
 import ImageLink from "./link";
 import Title from "./title";
 import axios from "axios";
+import Modal from "../modal/modal";
 import "swiper/css";
 import "swiper/css/navigation";
-import Modal from "../modal/modal";
 
 const baseURL = "https://api.themoviedb.org/3/trending/movie/day?api_key=253799727221b7a1aa90c66eb08832a0&language=pt-BR";
 const imageURL = "https://image.tmdb.org/t/p/w500"
@@ -17,10 +17,11 @@ function PopularMovies() {
 
     const [post, setPost] = useState();
     const [modalOpen, setModalOpen] = useState(false);
+    const [movieId, setMovieId] = useState('');
 
-    const showModal = () => {
+    const showModal = (event) => {
       setModalOpen(true);
-      console.log(modalOpen)
+      setMovieId(event.target.id);
     }
     
     useEffect(() => {
@@ -67,14 +68,20 @@ function PopularMovies() {
                     className="mySwiper"
                 >
                     { post?.map((movie) =>
-                        <SwiperSlide key={movie.id}>
-                            <ImageLink onClick={showModal}>
-                                <Image src={`${imageURL}${movie.poster_path}`} alt={`${movie.title}`}></Image>
+                        <SwiperSlide>
+                            <ImageLink>
+                                <Image 
+                                  id={`${movie.id}`}
+                                  onClick={(event) => showModal(event)}
+                                  src={`${imageURL}${movie.poster_path}`}
+                                  alt={`${movie.title}`}
+                                >
+                                </Image>
                             </ImageLink>
                     </SwiperSlide>
                     )}
                 </Swiper>
-                { modalOpen ? <Modal setModalOpen={setModalOpen}></Modal> : null }
+                { modalOpen ? <Modal setModalOpen={setModalOpen} movieId={movieId} setMovieId={setMovieId}></Modal> : null }
             </Container>           
         </>   
     )

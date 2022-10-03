@@ -5,7 +5,7 @@ const CloseButton = styled.div`
     position: absolute;
     color: ${FontColor1};
     top: 1rem;
-    right: 2rem;
+    right: 1rem;
     cursor: pointer;
 
     &:hover{

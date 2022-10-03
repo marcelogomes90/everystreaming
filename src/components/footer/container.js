@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { BackgroundColor } from "../../style/colors";
 
 const Container = styled.footer`
-    height: 12vh;
+    height: 6rem;
     background-color: ${BackgroundColor};
     display: flex;
     flex-direction: column;

@@ -6,6 +6,7 @@ import Image from "./image";
 import ImageLink from "./link";
 import Title from "./title";
 import axios from "axios";
+import Modal from "../modal/modal";
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -15,6 +16,13 @@ const imageURL = "https://image.tmdb.org/t/p/w500"
 function PopularSeries() {
 
     const [post, setPost] = useState();
+    const [modalOpen, setModalOpen] = useState(false);
+    const [serieId, setSerieId] = useState('');
+
+    const showModal = (event) => {
+      setModalOpen(true);
+      setSerieId(event.target.id);
+    }
     
     useEffect(() => {
         axios.get(baseURL).then((response) => {
@@ -60,13 +68,20 @@ function PopularSeries() {
                     className="mySwiper"
                 >
                     { post?.map((serie) =>
-                        <SwiperSlide key={serie.id}>
+                        <SwiperSlide>
                             <ImageLink>
-                                <Image src={`${imageURL}${serie.poster_path}`} alt={`${serie.name}`}></Image>
+                                <Image 
+                                  id={`${serie.id}`}
+                                  onClick={showModal}
+                                  src={`${imageURL}${serie.poster_path}`}
+                                  alt={`${serie.name}`}
+                                >
+                                </Image>
                             </ImageLink>
                         </SwiperSlide>
                     )}
                 </Swiper>
+                { modalOpen ? <Modal setModalOpen={setModalOpen} serieId={serieId} setSerieId={setSerieId}></Modal> : null }
             </Container>           
         </>   
     )
