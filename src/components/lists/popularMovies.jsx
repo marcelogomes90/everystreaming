@@ -8,6 +8,7 @@ import Title from "./title";
 import axios from "axios";
 import "swiper/css";
 import "swiper/css/navigation";
+import Modal from "../modal/modal";
 
 const baseURL = "https://api.themoviedb.org/3/trending/movie/day?api_key=253799727221b7a1aa90c66eb08832a0&language=pt-BR";
 const imageURL = "https://image.tmdb.org/t/p/w500"
@@ -15,6 +16,12 @@ const imageURL = "https://image.tmdb.org/t/p/w500"
 function PopularMovies() {
 
     const [post, setPost] = useState();
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const showModal = () => {
+      setModalOpen(true);
+      console.log(modalOpen)
+    }
     
     useEffect(() => {
         axios.get(baseURL).then((response) => {
@@ -61,12 +68,13 @@ function PopularMovies() {
                 >
                     { post?.map((movie) =>
                         <SwiperSlide key={movie.id}>
-                            <ImageLink>
+                            <ImageLink onClick={showModal}>
                                 <Image src={`${imageURL}${movie.poster_path}`} alt={`${movie.title}`}></Image>
                             </ImageLink>
                     </SwiperSlide>
                     )}
                 </Swiper>
+                { modalOpen ? <Modal setModalOpen={setModalOpen}></Modal> : null }
             </Container>           
         </>   
     )
