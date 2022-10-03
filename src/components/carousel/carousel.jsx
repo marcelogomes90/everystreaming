@@ -11,7 +11,7 @@ import Sinopse from "./sinopse";
 import "swiper/css";
 import "swiper/css/pagination";
 
-const baseURL = "https://api.themoviedb.org/3/trending/all/week?api_key=253799727221b7a1aa90c66eb08832a0";
+const baseURL = "https://api.themoviedb.org/3/trending/all/week?api_key=253799727221b7a1aa90c66eb08832a0&language=pt-BR";
 const poster = "https://image.tmdb.org/t/p/w1280"
 
 function Carousel() {

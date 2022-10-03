@@ -21,9 +21,9 @@ function Navbar() {
             <NavTitle href="#">EVERYSTREAMING</NavTitle>
             <Button onClick={openMenu}>{ menuIsOpen ? <AiOutlineClose size={28} /> : <AiOutlineMenu size={28}/> }</Button>
             <LinksContainer showMenu={`${menu}`}>
-                <Link href="#">Movies</Link>
-                <Link href="#">Series</Link>
-                <Link href="#">About</Link>
+                <Link href="#">Filmes</Link>
+                <Link href="#">Séries</Link>
+                <Link href="#">Sobre</Link>
             </LinksContainer>
         </Nav>    
     )

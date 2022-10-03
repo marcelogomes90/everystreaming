@@ -9,7 +9,7 @@ import axios from "axios";
 import "swiper/css";
 import "swiper/css/navigation";
 
-const baseURL = "https://api.themoviedb.org/3/trending/tv/day?api_key=253799727221b7a1aa90c66eb08832a0";
+const baseURL = "https://api.themoviedb.org/3/trending/tv/day?api_key=253799727221b7a1aa90c66eb08832a0&language=pt-BR";
 const imageURL = "https://image.tmdb.org/t/p/w500"
 
 function PopularSeries() {
@@ -24,7 +24,7 @@ function PopularSeries() {
 
     return(
         <>
-            <Title>Popular Series</Title>
+            <Title>Séries Populares</Title>
             <Container>
                 <Swiper
                     pagination={{
