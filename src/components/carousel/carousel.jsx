@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay, Navigation } from "swiper";
+import { Pagination, Autoplay } from "swiper";
 import Poster from "./poster";
 import Container from "./container";
 import axios from "axios";
@@ -9,7 +9,6 @@ import Information from "./information";
 import Title from "./title";
 import Sinopse from "./sinopse";
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/pagination";
 
 const baseURL = "https://api.themoviedb.org/3/trending/all/week?api_key=253799727221b7a1aa90c66eb08832a0&language=pt-BR";
@@ -38,8 +37,7 @@ function Carousel() {
                     clickable: true,
                 }}
                 loop={true}
-                navigation={true}
-                modules={[Autoplay, Pagination, Navigation]} 
+                modules={[Autoplay, Pagination]} 
                 className="mySwiper">  
                     { post?.slice(0, 9).map((trend) => 
                         <SwiperSlide>
