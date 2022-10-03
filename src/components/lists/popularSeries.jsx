@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Navigation } from "swiper";
 import Container from "./container";
 import Image from "./image";
 import ImageLink from "./link";
 import Title from "./title";
 import axios from "axios";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Navigation } from "swiper";
-
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
@@ -66,7 +65,7 @@ function PopularSeries() {
                     { post?.map((serie) =>
                         <SwiperSlide key={serie.id}>
                             <ImageLink>
-                                <Image src={`${imageURL}${serie.poster_path}`}></Image>
+                                <Image src={`${imageURL}${serie.poster_path}`} alt={`${serie.name}`}></Image>
                             </ImageLink>
                         </SwiperSlide>
                     )}
