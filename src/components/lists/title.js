@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FontColor1 } from "../../style/colors";
 
-const Title = styled.h2`
+const Title = styled.h3`
     color: ${FontColor1};
     padding-left: 3rem;
     margin-top: 2.5rem;
