@@ -22,7 +22,6 @@ function Carousel() {
         axios.get(baseURL).then((response) => {
           setPost(response.data.results);
         });
-        console.log(post)
     }, [] );
 
     return(
