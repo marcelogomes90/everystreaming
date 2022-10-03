@@ -3,7 +3,6 @@ import styled from "styled-components";
 const Sinopse = styled.p`
     
     display: -webkit-box;
-    text-align: justify;
     font-size: 1.25rem;
     overflow: hidden;
     -webkit-line-clamp: 10;
