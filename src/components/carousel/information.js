@@ -22,7 +22,8 @@ const Information = styled.div`
         width: 80vw;
     }
     @media (max-width: 500px) {
-        height: 18rem;
+        height: 16rem;
+        padding: 0 2rem 2rem 2rem;
     }
 `
 

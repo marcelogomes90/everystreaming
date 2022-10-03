@@ -15,7 +15,7 @@ const Sinopse = styled.p`
     }
     @media (max-width: 800px) {
         font-size: 1.25rem;
-        -webkit-line-clamp: 8;
+        -webkit-line-clamp: 7;
     }
     @media (max-width: 500px) {
         font-size: 1rem;
