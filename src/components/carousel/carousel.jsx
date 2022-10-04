@@ -50,7 +50,7 @@ function Carousel() {
                 modules={[Autoplay, Pagination]} 
                 className="mySwiper">  
                     { post?.slice(0, 9).map((trend) => 
-                        <SwiperSlide>
+                        <SwiperSlide key={`${trend.id}${trend.media_type}`}>
                             <DivCarousel>
                                 <Poster 
                                     src={`${poster}${trend.backdrop_path}`} 

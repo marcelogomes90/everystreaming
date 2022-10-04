@@ -70,7 +70,7 @@ function PopularSeries() {
                     className="mySwiper"
                 >
                     { post?.map((serie) =>
-                        <SwiperSlide>
+                        <SwiperSlide key={`${serie.id}${serie.name}`}>
                             <ImageLink>
                                 <Image 
                                   className={`${serie.media_type}-jwds`}

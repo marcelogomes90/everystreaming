@@ -7,6 +7,7 @@ const CloseButton = styled.div`
     top: 1rem;
     right: 1rem;
     cursor: pointer;
+    opacity: 1;
 
     &:hover{
         color: ${PrimaryColor};

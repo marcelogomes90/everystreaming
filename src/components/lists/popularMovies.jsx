@@ -70,7 +70,7 @@ function PopularMovies() {
                     className="mySwiper"
                 >
                     { post?.map((movie) =>
-                        <SwiperSlide>
+                        <SwiperSlide key={`${movie.id}${movie.title}`}>
                             <ImageLink>
                                 <Image 
                                   id={movie.id}
