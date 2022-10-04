@@ -3,6 +3,7 @@ import styled from "styled-components";
 const Poster = styled.img`
     width: 60vw;
     height: 35rem;
+    cursor: pointer;
     -webkit-mask-image:-webkit-gradient(linear, left top, right top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
 
     @media (max-width: 1500px) {

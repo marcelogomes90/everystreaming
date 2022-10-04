@@ -17,11 +17,13 @@ function PopularMovies() {
 
     const [post, setPost] = useState();
     const [modalOpen, setModalOpen] = useState(false);
-    const [movieId, setMovieId] = useState('');
+    const [classe, setClasse] = useState();
+    const [id, setId] = useState('');
 
     const showModal = (event) => {
+      setClasse(event.target.className);
+      setId(event.target.id);
       setModalOpen(true);
-      setMovieId(event.target.id);
     }
     
     useEffect(() => {
@@ -71,17 +73,18 @@ function PopularMovies() {
                         <SwiperSlide>
                             <ImageLink>
                                 <Image 
-                                  id={`${movie.id}`}
+                                  id={movie.id}
+                                  className={`${movie.media_type}-jwds`}
                                   onClick={(event) => showModal(event)}
                                   src={`${imageURL}${movie.poster_path}`}
-                                  alt={`${movie.title}`}
+                                  alt={movie.title}
                                 >
                                 </Image>
                             </ImageLink>
                     </SwiperSlide>
                     )}
                 </Swiper>
-                { modalOpen ? <Modal setModalOpen={setModalOpen} movieId={movieId} setMovieId={setMovieId}></Modal> : null }
+                { modalOpen ? <Modal setModalOpen={setModalOpen} id={id} classe={classe}></Modal> : null }
             </Container>           
         </>   
     )

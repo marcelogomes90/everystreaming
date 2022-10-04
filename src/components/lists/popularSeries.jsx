@@ -17,11 +17,13 @@ function PopularSeries() {
 
     const [post, setPost] = useState();
     const [modalOpen, setModalOpen] = useState(false);
-    const [serieId, setSerieId] = useState('');
+    const [classe, setClasse] = useState();
+    const [id, setId] = useState('');
 
     const showModal = (event) => {
+      setClasse(event.target.className);
+      setId(event.target.id);
       setModalOpen(true);
-      setSerieId(event.target.id);
     }
     
     useEffect(() => {
@@ -71,17 +73,18 @@ function PopularSeries() {
                         <SwiperSlide>
                             <ImageLink>
                                 <Image 
-                                  id={`${serie.id}`}
+                                  className={`${serie.media_type}-jwds`}
+                                  id={serie.id}
                                   onClick={showModal}
                                   src={`${imageURL}${serie.poster_path}`}
-                                  alt={`${serie.name}`}
+                                  alt={serie.name}
                                 >
                                 </Image>
                             </ImageLink>
                         </SwiperSlide>
                     )}
                 </Swiper>
-                { modalOpen ? <Modal setModalOpen={setModalOpen} serieId={serieId} setSerieId={setSerieId}></Modal> : null }
+                { modalOpen ? <Modal setModalOpen={setModalOpen} id={id} classe={classe}></Modal> : null }
             </Container>           
         </>   
     )

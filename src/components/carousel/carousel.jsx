@@ -7,6 +7,7 @@ import axios from "axios";
 import DivCarousel from "./divCarousel";
 import Information from "./information";
 import Title from "./title";
+import Modal from "../modal/modal";
 import Sinopse from "./sinopse";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -17,6 +18,15 @@ const poster = "https://image.tmdb.org/t/p/w1280"
 function Carousel() {
 
     const [post, setPost] = useState();
+    const [classe, setClasse] = useState();
+    const [id, setId] = useState();
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const showModal = (event) => {
+        setClasse(event.target.className);
+        setId(event.target.id);
+        setModalOpen(true);
+    }
     
     useEffect(() => {
         axios.get(baseURL).then((response) => {
@@ -42,15 +52,22 @@ function Carousel() {
                     { post?.slice(0, 9).map((trend) => 
                         <SwiperSlide>
                             <DivCarousel>
-                                <Poster src={`${poster}${trend.backdrop_path}`}></Poster>
+                                <Poster 
+                                    src={`${poster}${trend.backdrop_path}`} 
+                                    id={trend.id}
+                                    className={`${trend.media_type}-jwds`} 
+                                    onClick={(event) => showModal(event)}
+                                >
+                                </Poster>
                                 <Information>
-                                    <Title>{`${trend.title || trend.name}`}</Title>
-                                    <Sinopse>{`${trend.overview}`}</Sinopse>
+                                    <Title>{trend.title || trend.name}</Title>
+                                    <Sinopse>{trend.overview}</Sinopse>
                                 </Information>
                             </DivCarousel>
                         </SwiperSlide>
                     )}
             </Swiper>
+            { modalOpen ? <Modal setModalOpen={setModalOpen} id={id} classe={classe}></Modal> : null }
         </Container>
     )
 
