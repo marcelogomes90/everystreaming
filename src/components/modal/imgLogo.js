@@ -17,10 +17,10 @@ const ImgLogo = styled.img`
         width: 38px;
     }
     @media (max-width: 550px) {
-        width: 32px;
+        width: 36px;
     }
     @media (max-width: 380px) {
-        width: 28px;
+        width: 32px;
     }
 `
 
