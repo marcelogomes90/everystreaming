@@ -5,7 +5,7 @@ const DivLinks = styled.div`
     flex-direction: row;
     align-items: center;
     gap: 1rem;
-    margin-top: 0.5rem;
+    margin-top: -10px;
     opacity: 1;
 `
 

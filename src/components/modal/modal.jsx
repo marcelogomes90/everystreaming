@@ -32,11 +32,12 @@ import Paramount from "../../assets/Paramount+.png"
 import Pluto from "../../assets/Pluto TV.png"
 import Sun from "../../assets/Sun Nxt.png"
 import Tubi from "../../assets/Tubi TV.png"
+import Icons from "./divIcons";
 
 function Modal(props) {
 
-    const baseURLSerie = `https://api.watchmode.com/v1/title/tv-${props.id}/details/?apiKey=eGJo9BVB9xrKUD7jSnmaorFVfXagx0j83yOjBwrJ&append_to_response=sources`;
-    const baseURLMovie = `https://api.watchmode.com/v1/title/movie-${props.id}/details/?apiKey=eGJo9BVB9xrKUD7jSnmaorFVfXagx0j83yOjBwrJ&append_to_response=sources`;
+    const baseURLSerie = `https://api.watchmode.com/v1/title/tv-${props.id}/details/?apiKey=0jhwPU8O4Z0pNMte1dxtJyiBi60b4MvBsEKKeVJY&append_to_response=sources`;
+    const baseURLMovie = `https://api.watchmode.com/v1/title/movie-${props.id}/details/?apiKey=0jhwPU8O4Z0pNMte1dxtJyiBi60b4MvBsEKKeVJY&append_to_response=sources`;
     
     const tmdbURLSerie = `https://api.themoviedb.org/3/tv/${props.id}?api_key=253799727221b7a1aa90c66eb08832a0&language=pt-BR`;
     const tmdbURLMovie = `https://api.themoviedb.org/3/movie/${props.id}?api_key=253799727221b7a1aa90c66eb08832a0&language=pt-BR`;
@@ -135,12 +136,12 @@ function Modal(props) {
                 <DivInformation>
                     <Title>{title}</Title>
                     <DivDados>
-                        { genres?.map((generos) => <Genres key={generos.name}>{generos.name}</Genres> )} 
+                        { genres?.slice(0, 3).map((generos) => <Genres key={generos.name}>{generos.name}</Genres> )} 
                     </DivDados>
                     <DivDados>
-                        <FaCalendarAlt size={26} color={"red"}/>
+                        <Icons><FaCalendarAlt size={26} color={"red"} className="icon"/></Icons>
                         <SecondaryText>{`${parseInt(year)}`}</SecondaryText>
-                        <FaImdb size={26} color={"yellow"} />
+                        <Icons><FaImdb size={26} color={"yellow"} className="icon"/></Icons>
                         <SecondaryText>{vote}</SecondaryText> 
                     </DivDados>
                     <DivDados>
