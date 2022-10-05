@@ -56,7 +56,6 @@ function Modal(props) {
     const [year, setYear] = useState();
     const [cast, setCast] = useState();
     const [link, setLink] = useState();
-    const [linkId, setLinkId] = useState();
 
     const closeModal = () => {
         props.setModalOpen(false);
@@ -154,7 +153,7 @@ function Modal(props) {
             </DivPrincipal>
             <DivLinks>
                 {link?.filter(sourceId => idsStreaming.includes(sourceId.source_id)).map(service => (
-                    <Link href={service.web_url} target="_blank">
+                    <Link href={service.web_url} target="_blank" key={service.source_id}>
                         <ImgLogo src={`${findLogo(service.source_id)}`}/>
                     </Link>
                 ))}
