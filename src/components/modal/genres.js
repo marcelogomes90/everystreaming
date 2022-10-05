@@ -6,7 +6,6 @@ const Genres = styled.div`
     color: ${FontColor2};
     font-size: 14px;
     font-weight: 600;
-    opacity: 1;
     width: fit-content;
     height: fit-content;
     padding: 4px;

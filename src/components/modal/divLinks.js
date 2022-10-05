@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
-const DivDados = styled.div`
+const DivLinks = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 1rem;
+    margin-top: 0.5rem;
+    opacity: 1;
 `
 
-export default DivDados;
+export default DivLinks;

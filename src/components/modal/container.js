@@ -9,12 +9,12 @@ const Container = styled.div`
     top: 0;
     left: 0;
     z-index: 3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-    opacity: 0.98;
+    opacity: 0.99;
     border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `
 
 export default Container;

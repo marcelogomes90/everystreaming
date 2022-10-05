@@ -7,13 +7,13 @@ const Poster = styled.img`
     -webkit-mask-image:-webkit-gradient(linear, left top, right top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
 
     @media (max-width: 1500px) {
-        height: 32rem;
+        height: 34rem;
     }
     @media (max-width: 1200px) {
-        height: 28rem;
+        height: 30rem;
     }
     @media (max-width: 1000px) {
-        height: 26rem;
+        height: 28rem;
     }
     @media (max-width: 800px) {
         height: 20rem;
