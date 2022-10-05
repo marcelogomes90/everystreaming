@@ -3,6 +3,8 @@ import styled from "styled-components";
 const Icons = styled.div`
     width: 26px;
     height: 26px;
+    line-height: 26px;
+    text-align: center;
     
     .icon {
         @media (max-width: 1500px) {

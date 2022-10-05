@@ -3,7 +3,7 @@ import { BackgroundColor } from "../../style/colors";
 
 const Nav = styled.header`
     background: ${BackgroundColor};
-    height: 8vh;
+    height: 4rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

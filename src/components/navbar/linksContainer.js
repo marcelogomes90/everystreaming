@@ -5,14 +5,15 @@ const LinksContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    gap: 2rem;
+    align-items: center;
+    gap: 1.5rem;
 
     @media (max-width: 767px) {
         position: absolute;
-        top: 8vh;
+        top: 4rem;
         right: 0;
         flex-direction: column;
-        width: 60vw;
+        width: 80vw;
         height: 90vh;
         background-color: ${BackgroundColor};
         justify-content: flex-start;

@@ -18,10 +18,10 @@ const Sinopse = styled.p`
         font-size: 13px;
     }
     @media (max-width: 550px) {
-        font-size: 11px;
+        font-size: 12px;
     }
     @media (max-width: 380px) {
-        font-size: 10px;
+        font-size: 11px;
     }
 `
 

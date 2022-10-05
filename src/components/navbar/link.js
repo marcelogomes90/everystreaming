@@ -5,7 +5,7 @@ const Link = styled.a`
     text-decoration: none;
     color: ${FontColor1};
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 14px;
     letter-spacing: 2px;
 
     &:hover {

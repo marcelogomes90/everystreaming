@@ -5,6 +5,7 @@ import LinksContainer from "./linksContainer";
 import Nav from "./nav";
 import NavTitle from "./title";
 import Button from "./button";
+import Search from "../search/search";
 
 function Navbar() {
 
@@ -18,9 +19,10 @@ function Navbar() {
 
     return(
         <Nav>
-            <NavTitle href="#">EVERYSTREAMING</NavTitle>
+            <NavTitle href="#">STREAMING</NavTitle>
             <Button onClick={openMenu}>{ menuIsOpen ? <AiOutlineClose size={28} /> : <AiOutlineMenu size={28}/> }</Button>
             <LinksContainer showMenu={`${menu}`}>
+                <Search></Search>
                 <Link href="#">Filmes</Link>
                 <Link href="#">Séries</Link>
                 <Link href="#">Sobre</Link>

@@ -17,7 +17,7 @@ const DivInformation = styled.div`
         width: 32rem;
     }
     @media (max-width: 550px) {
-        width: 18rem;
+        width: 20rem;
     }
     @media (max-width: 380px) {
         width: 16rem;
