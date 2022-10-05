@@ -17,10 +17,10 @@ const DivInformation = styled.div`
         width: 32rem;
     }
     @media (max-width: 550px) {
-        width: 17rem;
+        width: 18rem;
     }
     @media (max-width: 380px) {
-        width: 15rem;
+        width: 16rem;
     }
 `
 
