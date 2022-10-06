@@ -35,6 +35,7 @@ import Sun from "../../assets/Sun Nxt.png"
 import Tubi from "../../assets/Tubi TV.png"
 import Icons from "./divIcons";
 import noImage from "../../assets/noImage.png"
+import Message from "./message";
 
 function Modal(props) {
 
@@ -60,7 +61,7 @@ function Modal(props) {
     const [cast, setCast] = useState();
     const [link, setLink] = useState();
     const [loading, setLoading] = useState(true);
-    const [message, setMessage] = useState(false);
+    const [message, setMessage] = useState(true);
 
     const closeModal = () => {
         props.setModalOpen(false);
@@ -68,12 +69,12 @@ function Modal(props) {
     }
 
     const showOrHide = () => {
-        setMessage(true);
+        setMessage(false);
     }
 
     const ShowMessage = () => {
-        if (!message) {
-            return <Title>Título não disponível em plataformas de streaming!</Title>
+        if (message) {
+            return <Message>Título não disponível em plataformas de streaming!</Message>
         }
     }
 
