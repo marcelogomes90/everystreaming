@@ -30,12 +30,22 @@ function Search() {
         setModalOpen(true);
     }
 
+    const getSearching = async () => {
+        try {
+            const data = await axios
+            .get(searchURL)
+            .then(response => {
+                setSearchData(response.data.results);
+            });
+        } catch (e) {
+            console.log(e)
+        }
+    };
+
     useEffect(() => {
         
         if (searchText != "") {
-            axios.get(searchURL).then((response) => {
-                setSearchData(response.data.results);
-            });
+            getSearching();
         }
 
     }, [searchText] )

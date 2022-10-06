@@ -11,7 +11,7 @@ import noImage from "../../assets/noImage.png"
 import "swiper/css";
 import "swiper/css/navigation";
 
-const baseURL = "https://api.themoviedb.org/3/trending/tv/day?api_key=253799727221b7a1aa90c66eb08832a0&language=pt-BR";
+const baseURL = "https://api.themoviedb.org/3/trending/tv/week?api_key=253799727221b7a1aa90c66eb08832a0&language=pt-BR";
 const imageURL = "https://image.tmdb.org/t/p/w500"
 
 function PopularSeries() {
@@ -26,11 +26,21 @@ function PopularSeries() {
       setId(event.target.id);
       setModalOpen(true);
     }
+
+    const getSerie = async () => {
+      try {
+          const data = await axios
+          .get(baseURL)
+          .then(response => {
+              setPost(response.data.results);
+          });
+      } catch (e) {
+          console.log(e)
+      }
+  };
     
     useEffect(() => {
-        axios.get(baseURL).then((response) => {
-          setPost(response.data.results);
-        });
+        getSerie();
     }, [] );
 
     return(

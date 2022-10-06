@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaImdb, FaCalendarAlt } from "react-icons/fa";
+import { RotatingLines } from "react-loader-spinner";
 import Container from "./container";
 import CloseButton from "./divClose";
 import axios from "axios";
@@ -37,8 +38,8 @@ import noImage from "../../assets/noImage.png"
 
 function Modal(props) {
 
-    const baseURLSerie = `https://api.watchmode.com/v1/title/tv-${props.id}/details/?apiKey=0jhwPU8O4Z0pNMte1dxtJyiBi60b4MvBsEKKeVJY&append_to_response=sources`;
-    const baseURLMovie = `https://api.watchmode.com/v1/title/movie-${props.id}/details/?apiKey=0jhwPU8O4Z0pNMte1dxtJyiBi60b4MvBsEKKeVJY&append_to_response=sources`;
+    const baseURLSerie = `https://api.watchmode.com/v1/title/tv-${props.id}/details/?apiKey=ZtM7xiTzoBJC5pb9DDM8bukueILcXrHt2ubg1cp3&append_to_response=sources`;
+    const baseURLMovie = `https://api.watchmode.com/v1/title/movie-${props.id}/details/?apiKey=ZtM7xiTzoBJC5pb9DDM8bukueILcXrHt2ubg1cp3&append_to_response=sources`;
     
     const tmdbURLSerie = `https://api.themoviedb.org/3/tv/${props.id}?api_key=253799727221b7a1aa90c66eb08832a0&language=pt-BR`;
     const tmdbURLMovie = `https://api.themoviedb.org/3/movie/${props.id}?api_key=253799727221b7a1aa90c66eb08832a0&language=pt-BR`;
@@ -58,15 +59,17 @@ function Modal(props) {
     const [year, setYear] = useState();
     const [cast, setCast] = useState();
     const [link, setLink] = useState();
-    const [showAlert, setShowAlert] = useState(true);
+    const [showAlert, setShowAlert] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const closeModal = () => {
         props.setModalOpen(false);
-        setShowAlert(true);
+        setShowAlert(false);
+        setLoading(false);
     }
 
     const showOrHide = () => {
-        setShowAlert(false);
+        setShowAlert(true);
     }
 
     const findLogo = (serviceId) => {
@@ -87,10 +90,11 @@ function Modal(props) {
         else if (serviceId == 396) { return Tubi }
     }
 
-    useEffect(() => {
-        
-        if (props.classe.includes('movie-jwds')) {
-            axios.get(tmdbURLMovie).then((response) => {
+    const getDataMovie = async () => {
+        try {
+            const data = await axios
+            .get(tmdbURLMovie)
+            .then(response => {
                 setYear(response.data.release_date);
                 setPoster(response.data.poster_path);
                 setTitle(response.data.title);
@@ -98,17 +102,41 @@ function Modal(props) {
                 setGenres(response.data.genres);
                 setVote(response.data.vote_average.toFixed(2));
             });
+        } catch (e) {
+            console.log(e)
+        }
+    };
 
-            axios.get(castURLMovie).then((response) => {
+    const getCastMovie = async () => {
+        try {
+            const data = await axios
+            .get(castURLMovie)
+            .then(response => {
                 setCast(response.data.cast);
             });
+        } catch (e) {
+            console.log(e)
+        }
+    };
 
-            axios.get(baseURLMovie).then((response) => {
+    const getSourceMovie = async () => {
+        try {
+            const data = await axios
+            .get(baseURLMovie)
+            .then(response => {
                 setLink(response.data.sources);
             });
+            setLoading(false);
+        } catch (e) {
+            console.log(e)
+        }
+    };
 
-        } else if (props.classe.includes('tv-jwds')) {
-            axios.get(tmdbURLSerie).then((response) => {
+    const getDataSerie = async () => {
+        try {
+            const data = await axios
+            .get(tmdbURLSerie)
+            .then(response => {
                 setYear(response.data.first_air_date);
                 setPoster(response.data.poster_path);
                 setTitle(response.data.name);
@@ -116,58 +144,101 @@ function Modal(props) {
                 setGenres(response.data.genres);
                 setVote(response.data.vote_average.toFixed(2));
             });
+        } catch (e) {
+            console.log(e)
+        }
+    };
 
-            axios.get(castURLSerie).then((response) => {
+    const getCastSerie = async () => {
+        try {
+            const data = await axios
+            .get(castURLSerie)
+            .then(response => {
                 setCast(response.data.cast);
             });
+        } catch (e) {
+            console.log(e)
+        }
+    };
 
-            axios.get(baseURLSerie).then((response) => {
+    const getSourceSerie = async () => {
+        try {
+            const data = await axios
+            .get(baseURLSerie)
+            .then(response => {
                 setLink(response.data.sources);
             });
+            setLoading(false);
+        } catch (e) {
+            console.log(e)
+        }
+    };
 
+    useEffect(() => {
+        
+        if (props.classe.includes('movie-jwds')) {
+            getDataMovie();
+            getCastMovie();
+            getSourceMovie();
+        } else if (props.classe.includes('tv-jwds')) {
+            getDataSerie();
+            getCastSerie();
+            getSourceSerie();
         }
         
     }, [] )
 
     return(
         <Container>
-            <DivPrincipal>
-                <CloseButton onClick={closeModal}>
-                    <AiOutlineClose size={28}></AiOutlineClose>
-                </CloseButton>
-                    <DivPoster>
-                        <Poster 
-                            src={(`${imageURL}${poster}`) == "https://image.tmdb.org/t/p/w780null" ? noImage : `${imageURL}${poster}`}
-                        >                            
-                        </Poster>
-                    </DivPoster>
-                <DivInformation>
-                    <Title>{title}</Title>
-                    <DivDados>
-                        { genres?.slice(0, 3).map((generos) => <Genres key={generos.name}>{generos.name}</Genres> )} 
-                    </DivDados>
-                    <DivDados>
-                        <Icons><FaCalendarAlt size={26} color={"red"} className="icon"/></Icons>
-                        <SecondaryText>{`${parseInt(year)}`}</SecondaryText>
-                        <Icons><FaImdb size={26} color={"yellow"} className="icon"/></Icons>
-                        <SecondaryText>{vote}</SecondaryText> 
-                    </DivDados>
-                    <DivDados>
-                        <SecondaryText>Elenco:</SecondaryText>
-                        { cast?.slice(0, 3).map((cast) => <SecondaryText key={cast.name}>{cast.name},</SecondaryText> )}
-                        { cast?.slice(3, 4).map((cast) => <SecondaryText key={cast.name}>{cast.name}.</SecondaryText> )}
-                    </DivDados>
-                    <Sinopse>{sinopse}</Sinopse>
-                </DivInformation>       
-            </DivPrincipal>
-            <DivLinks>
-                {link?.filter(sourceId => idsStreaming.includes(sourceId.source_id)).map(service => (
-                <Link onLoad={showOrHide} href={service.web_url} target="_blank" key={service.source_id}>
-                    <ImgLogo src={`${findLogo(service.source_id)}`}/>
-                </Link>
-                ))}
-                {showAlert == true ? <Title>Não disponível em streaming!</Title> : null}
-            </DivLinks>     
+            { loading ? 
+                <RotatingLines
+                    strokeColor="#b39ddb"
+                    strokeWidth="3"
+                    animationDuration="0.95"
+                    width="84"
+                    visible={true}
+              />
+              :
+                <>
+                    <DivPrincipal>
+                        <CloseButton onClick={closeModal}>
+                            <AiOutlineClose size={28}></AiOutlineClose>
+                        </CloseButton>
+                            <DivPoster>
+                                <Poster 
+                                    src={(`${imageURL}${poster}`) == "https://image.tmdb.org/t/p/w780null" ? noImage : `${imageURL}${poster}`}
+                                >                            
+                                </Poster>
+                            </DivPoster>
+                        <DivInformation>
+                            <Title>{title}</Title>
+                            <DivDados>
+                                { genres?.slice(0, 3).map((generos) => <Genres key={generos.name}>{generos.name}</Genres> )} 
+                            </DivDados>
+                            <DivDados>
+                                <Icons><FaCalendarAlt size={26} color={"red"} className="icon"/></Icons>
+                                <SecondaryText>{`${parseInt(year)}`}</SecondaryText>
+                                <Icons><FaImdb size={26} color={"yellow"} className="icon"/></Icons>
+                                <SecondaryText>{vote}</SecondaryText> 
+                            </DivDados>
+                            <DivDados>
+                                <SecondaryText>Elenco:</SecondaryText>
+                                { cast?.slice(0, 3).map((cast) => <SecondaryText key={cast.name}>{cast.name},</SecondaryText> )}
+                                { cast?.slice(3, 4).map((cast) => <SecondaryText key={cast.name}>{cast.name}.</SecondaryText> )}
+                            </DivDados>
+                            <Sinopse>{sinopse}</Sinopse>
+                        </DivInformation>       
+                    </DivPrincipal>
+                    <DivLinks>
+                        {link?.filter(sourceId => idsStreaming.includes(sourceId.source_id)).map(service => (
+                        <Link onLoad={showOrHide} href={service.web_url} target="_blank" key={service.source_id}>
+                            <ImgLogo src={`${findLogo(service.source_id)}`}/>
+                        </Link>
+                        ))}
+                        {!showAlert ? <Title>Não disponível em streaming!</Title> : null}
+                    </DivLinks>
+                </>
+            }     
         </Container>
     )
 }

@@ -27,11 +27,21 @@ function Carousel() {
         setId(event.target.id);
         setModalOpen(true);
     }
+
+    const getTrending = async () => {
+        try {
+            const data = await axios
+            .get(baseURL)
+            .then(response => {
+                setPost(response.data.results);
+            });
+        } catch (e) {
+            console.log(e)
+        }
+    };
     
     useEffect(() => {
-        axios.get(baseURL).then((response) => {
-          setPost(response.data.results);
-        });
+        getTrending();
     }, [] );
 
     return(
