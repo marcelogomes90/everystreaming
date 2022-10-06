@@ -59,17 +59,11 @@ function Modal(props) {
     const [year, setYear] = useState();
     const [cast, setCast] = useState();
     const [link, setLink] = useState();
-    const [showAlert, setShowAlert] = useState(false);
     const [loading, setLoading] = useState(true);
 
     const closeModal = () => {
         props.setModalOpen(false);
-        setShowAlert(false);
         setLoading(false);
-    }
-
-    const showOrHide = () => {
-        setShowAlert(true);
     }
 
     const findLogo = (serviceId) => {
@@ -231,11 +225,10 @@ function Modal(props) {
                     </DivPrincipal>
                     <DivLinks>
                         {link?.filter(sourceId => idsStreaming.includes(sourceId.source_id)).map(service => (
-                        <Link onLoad={showOrHide} href={service.web_url} target="_blank" key={service.source_id}>
-                            <ImgLogo src={`${findLogo(service.source_id)}`}/>
-                        </Link>
+                            <Link href={service.web_url} target="_blank" key={service.source_id}>
+                                <ImgLogo src={`${findLogo(service.source_id)}`}/>
+                            </Link>
                         ))}
-                        {!showAlert ? <Title>Não disponível em streaming!</Title> : null}
                     </DivLinks>
                 </>
             }     
