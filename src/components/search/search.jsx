@@ -28,6 +28,7 @@ function Search() {
         setClasse(e.target.className);
         setId(e.target.id);
         setModalOpen(true);
+        setSearchText("")
     }
 
     const getSearching = async () => {

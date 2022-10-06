@@ -38,8 +38,8 @@ import noImage from "../../assets/noImage.png"
 
 function Modal(props) {
 
-    const baseURLSerie = `https://api.watchmode.com/v1/title/tv-${props.id}/details/?apiKey=ZtM7xiTzoBJC5pb9DDM8bukueILcXrHt2ubg1cp3&append_to_response=sources`;
-    const baseURLMovie = `https://api.watchmode.com/v1/title/movie-${props.id}/details/?apiKey=ZtM7xiTzoBJC5pb9DDM8bukueILcXrHt2ubg1cp3&append_to_response=sources`;
+    const baseURLSerie = `https://api.watchmode.com/v1/title/tv-${props.id}/details/?apiKey=wo1Xbr6cSI6m3HjXyy9NbJwe5FvYmGv7f08VpE2E&append_to_response=sources`;
+    const baseURLMovie = `https://api.watchmode.com/v1/title/movie-${props.id}/details/?apiKey=wo1Xbr6cSI6m3HjXyy9NbJwe5FvYmGv7f08VpE2E&append_to_response=sources`;
     
     const tmdbURLSerie = `https://api.themoviedb.org/3/tv/${props.id}?api_key=253799727221b7a1aa90c66eb08832a0&language=pt-BR`;
     const tmdbURLMovie = `https://api.themoviedb.org/3/movie/${props.id}?api_key=253799727221b7a1aa90c66eb08832a0&language=pt-BR`;
@@ -60,10 +60,21 @@ function Modal(props) {
     const [cast, setCast] = useState();
     const [link, setLink] = useState();
     const [loading, setLoading] = useState(true);
+    const [message, setMessage] = useState(false);
 
     const closeModal = () => {
         props.setModalOpen(false);
         setLoading(false);
+    }
+
+    const showOrHide = () => {
+        setMessage(true);
+    }
+
+    const ShowMessage = () => {
+        if (!message) {
+            return <Title>Título não disponível em plataformas de streaming!</Title>
+        }
     }
 
     const findLogo = (serviceId) => {
@@ -225,10 +236,11 @@ function Modal(props) {
                     </DivPrincipal>
                     <DivLinks>
                         {link?.filter(sourceId => idsStreaming.includes(sourceId.source_id)).map(service => (
-                            <Link href={service.web_url} target="_blank" key={service.source_id}>
+                            <Link onLoad={showOrHide} href={service.web_url} target="_blank" key={service.source_id}>
                                 <ImgLogo src={`${findLogo(service.source_id)}`}/>
                             </Link>
                         ))}
+                        <ShowMessage />
                     </DivLinks>
                 </>
             }     
