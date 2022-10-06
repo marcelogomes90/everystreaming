@@ -33,6 +33,7 @@ import Pluto from "../../assets/Pluto TV.png"
 import Sun from "../../assets/Sun Nxt.png"
 import Tubi from "../../assets/Tubi TV.png"
 import Icons from "./divIcons";
+import noImage from "../../assets/noImage.png"
 
 function Modal(props) {
 
@@ -57,9 +58,15 @@ function Modal(props) {
     const [year, setYear] = useState();
     const [cast, setCast] = useState();
     const [link, setLink] = useState();
+    const [showAlert, setShowAlert] = useState(true);
 
     const closeModal = () => {
         props.setModalOpen(false);
+        setShowAlert(true);
+    }
+
+    const showOrHide = () => {
+        setShowAlert(false);
     }
 
     const findLogo = (serviceId) => {
@@ -128,11 +135,12 @@ function Modal(props) {
                 <CloseButton onClick={closeModal}>
                     <AiOutlineClose size={28}></AiOutlineClose>
                 </CloseButton>
-                
-                <DivPoster>
-                    <Poster src={`${imageURL}${poster}`}></Poster>
-                </DivPoster>
-                
+                    <DivPoster>
+                        <Poster 
+                            src={(`${imageURL}${poster}`) == "https://image.tmdb.org/t/p/w780null" ? noImage : `${imageURL}${poster}`}
+                        >                            
+                        </Poster>
+                    </DivPoster>
                 <DivInformation>
                     <Title>{title}</Title>
                     <DivDados>
@@ -154,10 +162,11 @@ function Modal(props) {
             </DivPrincipal>
             <DivLinks>
                 {link?.filter(sourceId => idsStreaming.includes(sourceId.source_id)).map(service => (
-                    <Link href={service.web_url} target="_blank" key={service.source_id}>
-                        <ImgLogo src={`${findLogo(service.source_id)}`}/>
-                    </Link>
+                <Link onLoad={showOrHide} href={service.web_url} target="_blank" key={service.source_id}>
+                    <ImgLogo src={`${findLogo(service.source_id)}`}/>
+                </Link>
                 ))}
+                {showAlert == true ? <Title>Não disponível em streaming!</Title> : null}
             </DivLinks>     
         </Container>
     )

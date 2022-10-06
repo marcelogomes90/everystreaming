@@ -1,18 +1,18 @@
 import styled from "styled-components";
-import { PrimaryColor } from "../../style/colors";
+import { BackgroundLightColor, PrimaryDarkColor,  } from "../../style/colors";
 
 const DivSearch = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color: ${BackgroundLightColor};
     height: 60px;
     width: 266px;
     white-space: pre-wrap;
     cursor: pointer;
 
     &:hover{
-        background-color: ${PrimaryColor};
+        background-color: ${PrimaryDarkColor};
     }
 `
 

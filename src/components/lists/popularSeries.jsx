@@ -7,6 +7,7 @@ import ImageLink from "./link";
 import Title from "./title";
 import axios from "axios";
 import Modal from "../modal/modal";
+import noImage from "../../assets/noImage.png"
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -76,7 +77,7 @@ function PopularSeries() {
                                   className={`${serie.media_type}-jwds`}
                                   id={serie.id}
                                   onClick={showModal}
-                                  src={`${imageURL}${serie.poster_path}`}
+                                  src={(`${imageURL}${serie.poster_path}`) == "https://image.tmdb.org/t/p/w500null" ? noImage : `${imageURL}${serie.poster_path}`}
                                   alt={serie.name}
                                 >
                                 </Image>

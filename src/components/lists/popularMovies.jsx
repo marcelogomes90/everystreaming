@@ -7,6 +7,7 @@ import ImageLink from "./link";
 import Title from "./title";
 import axios from "axios";
 import Modal from "../modal/modal";
+import noImage from "../../assets/noImage.png"
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -76,7 +77,7 @@ function PopularMovies() {
                                   id={movie.id}
                                   className={`${movie.media_type}-jwds`}
                                   onClick={(event) => showModal(event)}
-                                  src={`${imageURL}${movie.poster_path}`}
+                                  src={(`${imageURL}${movie.poster_path}`) == "https://image.tmdb.org/t/p/w500null" ? noImage : `${imageURL}${movie.poster_path}`}
                                   alt={movie.title}
                                 >
                                 </Image>

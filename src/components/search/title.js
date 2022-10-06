@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { FontColor2 } from "../../style/colors";
+import { FontColor1 } from "../../style/colors";
 
 const Title = styled.h5`
-    color: ${FontColor2};
+    color: ${FontColor1};
     position: absolute;
     left: 50px;
 `

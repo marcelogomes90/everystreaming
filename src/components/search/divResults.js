@@ -6,7 +6,7 @@ const DivResults = styled.div`
     justify-content: center;
     position: absolute;
     margin-left: -40px;
-    margin-top: 32px;
+    margin-top: 35px;
     z-index: 5;
     background-color: white;
 `

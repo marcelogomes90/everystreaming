@@ -7,6 +7,7 @@ import Title from "./title";
 import Container from "./container";
 import DivResults from "./divResults";
 import Modal from "../modal/modal";
+import noImage from "../../assets/noImage.png"
 
 function Search() {
 
@@ -34,7 +35,6 @@ function Search() {
         if (searchText != "") {
             axios.get(searchURL).then((response) => {
                 setSearchData(response.data.results);
-                console.log(searchData)
             });
         }
 
@@ -45,13 +45,25 @@ function Search() {
             <Input placeholder="Título" onChange={(event) => makeSearch(event)}></Input>
             { searchText != "" ?
             <DivResults>
-                { searchData?.filter(dataFilter => dataFilter.media_type != "person").slice(0, 10).map(result => (
+                { searchData?.filter(dataFilter => dataFilter.media_type != "person").slice(0, 5).map(result => (
                     <DivSearch 
                         id={result.id}
                         className={`${result.media_type}-jwds`} 
-                        onClick={(e) => showModal(e)}>
-                        <Poster src={`${imageURL}${result.poster_path}`}></Poster>
-                        <Title>{result.name || result.title}</Title>
+                        onClick={(e) => showModal(e)}
+                        key={`${result.id}${result.media_teype}`}
+                    >
+                        <Poster 
+                            src={(`${imageURL}${result.poster_path}`) == "https://image.tmdb.org/t/p/w154null" ? noImage : `${imageURL}${result.poster_path}`}
+                            id={result.id}
+                            className={`${result.media_type}-jwds`} 
+                            onClick={(e) => showModal(e)}
+                        > 
+                        </Poster>
+                        <Title
+                            id={result.id}
+                            className={`${result.media_type}-jwds`} 
+                            onClick={(e) => showModal(e)}
+                        >{result.name || result.title}</Title>
                     </DivSearch>
                 ))}
             </DivResults>
